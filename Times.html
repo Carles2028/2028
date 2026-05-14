@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hola, Genesis Sarai</title>
+    <style>
+        body {
+            background-color: #87CEEB; 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            overflow: hidden;
+        }
+        .cuadro-rosa {
+            background-color: #FFC0CB; 
+            border: 3px solid #FF69B4;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+            position: absolute;
+            transition: all 0.4s ease-in-out;
+            min-width: 250px;
+        }
+        h2 { color: #D81B60; margin-bottom: 20px; }
+        p { color: #444; font-weight: bold; }
+        button {
+            background-color: #589b96;
+            color: white;
+            border: none;
+            padding: 10px 25px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            margin: 5px;
+        }
+        button:hover { background-color: #1bbcd8; }
+        input {
+            padding: 10px;
+            border-radius: 10px;
+            border: 2px solid #FF69B4;
+            width: 80%;
+            text-align: center;
+            font-size: 18px;
+            margin-top: 10px;
+        }
+        .hidden { display: none; }
+    </style>
+</head>
+<body>
+
+<div id="interfaz" class="cuadro-rosa">
+    <h2 id="titulo">Hola, aqui un archivo, en verdad quieres leeerlo?</h2>
+    <div id="botones-pasos">
+        <button onclick="siguientePaso()">SÍ</button>
+        <button onclick="alert('Esta bien, Suerte, grosera.. te doy otro intento');">NO</button>
+    </div>
+
+    <div id="seccion-final" class="hidden">
+        <p>Combinacion de numeros que dan significado a fechas especiales de ambos</p>
+        <input type="password" id="passInput" placeholder="Introduce el código">
+        <br><br>
+        <button onclick="verificar()">push</button>
+    </div>
+</div>
+
+<script>
+    let paso = 1;
+    const interfaz = document.getElementById('interfaz');
+    const titulo = document.getElementById('titulo');
+
+    function siguientePaso() {
+        if (paso < 3) {
+            paso++;
+            // Cambiar tamaño (se hace más pequeño cada vez)
+            let escala = 1 - (paso * 0.15);
+            interfaz.style.transform = `scale(${escala})`;
+            
+            // Mover a un lugar aleatorio de la pantalla
+            const randomX = Math.floor(Math.random() * (window.innerWidth - 300));
+            const randomY = Math.floor(Math.random() * (window.innerHeight - 300));
+            
+            interfaz.style.left = randomX + 'px';
+            interfaz.style.top = randomY + 'px';
+            
+            titulo.innerText = "¿De verdad quieres leerlo?";
+        } else {
+            interfaz.style.transform = "scale(1)";
+            interfaz.style.position = "relative";
+            interfaz.style.left = "0";
+            interfaz.style.top = "0";
+            titulo.innerText = ":)))";
+            document.getElementById('botones-pasos').classList.add('hidden');
+            document.getElementById('seccion-final').classList.remove('hidden');
+        }
+    }
+
+    function verificar() {
+        const input = document.getElementById('passInput').value;
+        if (input === "2028") {
+            alert("Acceso Autorizado. Descargando...");
+            window.location.href = "https://corc-my.sharepoint.com/:w:/g/personal/carles_baltodano74u_std_uni_edu_ni/IQDIWOnutx-iQp1zAtEid94KAdZ9QQQygL72dRooiPj9Ps4?e=54M731";
+        } else {
+            alert("Fue adrede esa respuesta??");
+        }
+    }
+
+    let clicks = 0;
+    document.getElementById('titulo').onclick = function() {
+        clicks++;
+        if (clicks === 5) {
+            window.location.href = "secret.html"; 
+        }
+    };
+</script>
+
+</body>
+</html>
